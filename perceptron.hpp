@@ -5,7 +5,8 @@ CS 6200, BGSU
 
 */
 #ifndef PERCEPTRON_H 
-#define PERCEPTRON_H 
+#define PERCEPTRON_H
+#include<iostream> 
 #include<vector>
 
 class Perceptron {
@@ -13,29 +14,24 @@ private:
 	double learningRate; 
 	double threshold;
     std::vector<double> weights;
+    const int MAX=8; 
 
 public:
-	Perceptron()
+	Perceptron(double inputRate, double inputThreshhold)
 	{
-		std::cout<<"Create new Perceptron"; 
-
+		learningRate=inputRate; 
+		threshold=inputThreshhold; 
 	}; 
 
-	void trainModel()
+	void trainModel(std::vector<double> X,std::vector<double> Y, std::vector<double> Z, std::vector<double> Outputs)
 	{
 		std::cout<<"Hello Train!"; 
 
 	}; 
 
-	void readDataSet()
+	double calculateOutput(double x, double y, double z)
 	{
-		std::cout<<"Read Dataset"; 
-
-	};
-
-	void dotProduct()
-	{
-		std::cout<<"Perform dot product"; 
+		return 2.00; 
 
 	}; 
 

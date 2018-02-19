@@ -4,8 +4,4 @@
 int  main()
 {
 	Perceptron P;
-	P.trainModel(); 
-	P.readDataSet(); 
-	P.dotProduct(); 
-
 }
