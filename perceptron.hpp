@@ -14,7 +14,7 @@ private:
 	double learningRate; 
 	double threshold;
     std::vector<double> weights;
-    const int MAX=8; 
+    const static int MAX=8; 
 
 public:
 	Perceptron(double rate, double threshhold)
@@ -25,7 +25,12 @@ public:
 
 	void trainModel(int trainingData[4][8])
 	{
-		std::cout<<"Training started !"; 
+		for(int i=0;i<4;i++){
+			for (int j=0;j<8;j++){
+				std::cout<<trainingData[i][j]<<" "; 
+			}
+			std::cout<<"\n"; 
+		}
 
 	}; 
 
