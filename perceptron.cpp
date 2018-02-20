@@ -19,8 +19,16 @@ int  main()
 
 Perceptron P(0.5,0); 
 P.trainModel(trainingData); 
-std::string dataClass=P.classify(0,0,0);
-std::cout<<dataClass;  
+
+for (int i=-50;i<=50;i++)
+{
+	for (int j=-50;i<=50;j++)
+	{
+		std::string dataClass=P.classify(i,j,0);
+        std::cout<<dataClass;  
+
+	}
+}
 
   return 0;
 

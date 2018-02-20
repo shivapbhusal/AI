@@ -14,8 +14,7 @@ private:
 	double learningRate; 
 	double threshold;
     double weights[4]={0,0,0,0};  // Initialize all weights to 0 
-    const static int MAX_ITR=8; 
-
+  
 public:
 	Perceptron(double rate, double threshhold) // Initialize a perceptron with threshhold and learning rate. 
 	{
@@ -25,23 +24,31 @@ public:
 
 	void trainModel(int trainingData[4][8])
 	{
+		int count=0; // Check for how many consecutive times there will be no changes in the weights.
+		int N=0; // No of iterations taken for training  
 
-		for (int i=0;i<MAX_ITR;i++)
+		while (count<10)
 		{
-			for (int j=0;j<8;j++)
+			for (int i=0;i<8;i++)
 			{
 			   double currentResult=getResult(trainingData[i][0],trainingData[i][1],trainingData[i][2]); 
 			   if (currentResult<=0)
 			   {
 			   double error=trainingData[i][3]-currentResult; 
 			   weights[0]=weights[0]+learningRate*error*trainingData[i][0]; 
-               weights[1]=float(weights[1])+learningRate*error*trainingData[i][1]; 
-               weights[2]=float(weights[2])+learningRate*error*trainingData[i][2]; 
-               weights[3]=float(weights[3])+learningRate*error; 
-
+               weights[1]=weights[1]+learningRate*error*trainingData[i][1]; 
+               weights[2]=weights[2]+learningRate*error*trainingData[i][2]; 
+               weights[3]=weights[3]+learningRate*error; 
+               count=0; 
 			   }
+			   else {
+			   	count=count+1; 
+			   }
+			   N=N+1; 
 			}
 		}
+
+		std::cout<<"Training successful with " <<N<<" iterations"<<"\n"; 
 
 	}; 
 
