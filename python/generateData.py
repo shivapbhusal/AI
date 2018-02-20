@@ -1,5 +1,5 @@
 '''
-Three class Perceptron implementation 
+Generating Test datasets around three centers of sphere 
 Author: Shiva Bhusal
 Bowling Green State University
 
