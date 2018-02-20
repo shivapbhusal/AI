@@ -1,6 +1,7 @@
 '''
 Three class Perceptron implementation 
-Author: Shiva Bhusal, BGSU 
+Author: Shiva Bhusal
+Bowling Green State University
 
 '''
 from mpl_toolkits.mplot3d import Axes3D
@@ -50,13 +51,13 @@ Z=[0,0,0,0,0,0,0,0]
 
 
 weights=[0,0,0,0] 
-expected=[1,1,1,1,-1,-1,-1,-1]
+expected=[1,1,1,1,0,0,0,0]
 iteration=0
 
 while iteration<=MAX_ITER:
     for i in range(len(X)-1):
         observed=getOutput(THETA,weights,float(X[i]),float(Y[i]),float(Z[i]))
-        error=float(expected[i])-observed
+        error=float(expected[i])-float(observed)
         weights[0]=float(weights[0])+LEARNING_RATE*error*X[i]
         weights[1]=float(weights[1])+LEARNING_RATE*error*Y[i]
         weights[2]=float(weights[2])+LEARNING_RATE*error*Z[i]
@@ -68,3 +69,5 @@ print(weights)
 
 print(getOutput(THETA,weights,0,4,0))
 print(getOutput(THETA, weights,7,3.5,0))
+print(getOutput(THETA,weights,0,0,0))
+print(getOutput(THETA, weights,0,1,0))
