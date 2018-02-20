@@ -17,15 +17,15 @@ private:
     const int MAX=8; 
 
 public:
-	Perceptron(double inputRate, double inputThreshhold)
+	Perceptron(double rate, double threshhold)
 	{
-		learningRate=inputRate; 
-		threshold=inputThreshhold; 
+		learningRate=rate; 
+		threshold=threshold; 
 	}; 
 
-	void trainModel(std::vector<double> X,std::vector<double> Y, std::vector<double> Z, std::vector<double> Outputs)
+	void trainModel(int trainingData[4][8])
 	{
-		std::cout<<"Hello Train!"; 
+		std::cout<<"Training started !"; 
 
 	}; 
 

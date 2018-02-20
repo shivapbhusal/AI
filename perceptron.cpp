@@ -1,27 +1,18 @@
 #include<iostream>
 #include "perceptron.hpp"
-#include<vector>
 
 int  main()
 {
-  
-  const int ROWS = 4;
-  const int COLUMNS= 15;
-  std::vector<int> vec;
-  vec.resize(ROWS * COLUMNS);
-  for (int ROWS = 0; ROWS < ROWS; ROWS++) {
-    for (int col = 0; col < COLUMNS; col++) {
-        vec[ROWS * COLUMNS + col] = ROWS * col;
-    }
- }
+  int trainingData[4][8]= {
+  { 0,0,0,1,7,7,7,7 },
+  { 0,1,2,3,0,1,2,3 },
+  { 0,0,0,0,0,0,0,0 },
+  { 1,1,1,1,0,0,0,0 }
+};
 
- for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
- {
- 	  std::cout << ' ' << *it;
-      std::cout << '\n';
+Perceptron P(0.5,0); 
+P.trainModel(trainingData); 
 
- }
-  
   return 0;
 
 }
