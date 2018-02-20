@@ -1,23 +1,23 @@
-/* Header file for the perceptron
-
-Created By: Shiva Bhusal, 
-CS 6200, BGSU 
+/*
+Perceptron implementation in C++ 
+CS 6200
+Shiva Bhusal, Bowling Green State University
 
 */
+
 #ifndef PERCEPTRON_H 
 #define PERCEPTRON_H
 #include<iostream> 
-#include<vector>
 
 class Perceptron {
 private:
 	double learningRate; 
 	double threshold;
-    std::vector<double> weights;
-    const static int MAX=8; 
+    double weights[4]={0,0,0,0};  // Initialize all weights to 0 
+    const static int MAX_ITR=8; 
 
 public:
-	Perceptron(double rate, double threshhold)
+	Perceptron(double rate, double threshhold) // Initialize a perceptron with threshhold and learning rate. 
 	{
 		learningRate=rate; 
 		threshold=threshold; 
@@ -25,20 +25,44 @@ public:
 
 	void trainModel(int trainingData[4][8])
 	{
-		for(int i=0;i<4;i++){
-			for (int j=0;j<8;j++){
-				std::cout<<trainingData[i][j]<<" "; 
+
+		for (int i=0;i<MAX_ITR;i++)
+		{
+			for (int j=0;j<8;j++)
+			{
+			   double currentResult=getResult(trainingData[i][0],trainingData[i][1],trainingData[i][2]); 
+			   if (currentResult<=0)
+			   {
+			   double error=trainingData[i][3]-currentResult; 
+			   weights[0]=weights[0]+learningRate*error*trainingData[i][0]; 
+               weights[1]=float(weights[1])+learningRate*error*trainingData[i][1]; 
+               weights[2]=float(weights[2])+learningRate*error*trainingData[i][2]; 
+               weights[3]=float(weights[3])+learningRate*error; 
+
+			   }
 			}
-			std::cout<<"\n"; 
 		}
 
 	}; 
 
-	double calculateOutput(double x, double y, double z)
+	double getResult(double x, double y, double z)
 	{
-		return 2.00; 
+		double result=x*weights[0]+y*weights[1]+z*weights[2]+weights[3]; 
+		return result; 
 
 	}; 
+
+	std::string classify(double x, double y, double z)
+	{
+		double result=getResult(x,y,z); 
+		if (result>0)
+		{
+			return "A"; 
+		}
+		else {
+			return "B"; 
+		}
+	}
 
 }; 
 
