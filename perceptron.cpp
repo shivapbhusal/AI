@@ -20,16 +20,13 @@ int  main()
 Perceptron P(0.5,0); 
 P.trainModel(trainingData); 
 
-for (int i=-50;i<=50;i++)
+for (int i=0;i<=7;i++)
 {
-	for (int j=-50;i<=50;j++)
-	{
-		std::string dataClass=P.classify(i,j,0);
-        std::cout<<dataClass;  
+   std::string dataClass=P.classify(trainingData[0][i],trainingData[1][i],trainingData[2][i]);
+   std::cout<<trainingData[0][i]<<trainingData[1][i]<<trainingData[2][i]; 
+   std::cout<<dataClass;  
 
-	}
 }
-
   return 0;
 
 }

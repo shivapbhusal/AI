@@ -27,25 +27,27 @@ public:
 		int count=0; // Check for how many consecutive times there will be no changes in the weights.
 		int N=0; // No of iterations taken for training  
 
-		while (count<10)
+		while(count<8)
 		{
 			for (int i=0;i<8;i++)
 			{
-			   double currentResult=getResult(trainingData[i][0],trainingData[i][1],trainingData[i][2]); 
-			   if (currentResult<=0)
-			   {
-			   double error=trainingData[i][3]-currentResult; 
-			   weights[0]=weights[0]+learningRate*error*trainingData[i][0]; 
-               weights[1]=weights[1]+learningRate*error*trainingData[i][1]; 
-               weights[2]=weights[2]+learningRate*error*trainingData[i][2]; 
-               weights[3]=weights[3]+learningRate*error; 
-               count=0; 
+			   double currentResult=getResult(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
+			   double error=trainingData[3][i]-currentResult; 
+			   if (error==0){
+			   	count=count+1;
+			   	N=N+1;  
 			   }
 			   else {
-			   	count=count+1; 
+			     weights[0]=weights[0]+learningRate*error*trainingData[0][i]; 
+                 weights[1]=weights[1]+learningRate*error*trainingData[1][i]; 
+                 weights[2]=weights[2]+learningRate*error*trainingData[2][i]; 
+                 weights[3]=weights[3]+learningRate*error; 
+                 N=N+1;
+                 count=0;  
 			   }
-			   N=N+1; 
-			}
+			   
+			 }
+			   
 		}
 
 		std::cout<<"Training successful with " <<N<<" iterations"<<"\n"; 
@@ -55,7 +57,13 @@ public:
 	double getResult(double x, double y, double z)
 	{
 		double result=x*weights[0]+y*weights[1]+z*weights[2]+weights[3]; 
-		return result; 
+		if (result<=0)
+		{
+			return 0; 
+		}
+		else {
+			return 1; 
+		}
 
 	}; 
 

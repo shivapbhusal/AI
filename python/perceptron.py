@@ -67,7 +67,5 @@ while iteration<=MAX_ITER:
 
 print(weights)    
 
-print(getOutput(THETA,weights,0,4,0))
-print(getOutput(THETA, weights,7,3.5,0))
-print(getOutput(THETA,weights,0,0,0))
-print(getOutput(THETA, weights,0,1,0))
+for i in range(8):
+	print(getOutput(THETA,weights,X[i],Y[i],Z[i]))
