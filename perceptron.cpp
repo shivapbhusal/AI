@@ -24,6 +24,13 @@ int trainingSetB[4][4]= {
   { 1,1,1,1 }
 };
 
+int trainingSetC[4][4]= {
+  { 100,100,100,100 },
+  { 0,1,2,3 },
+  { 0,0,0,0 },
+  { 1,1,1,1 }
+};
+
 Perceptron P1(0.5,0); 
 P1.trainModel(trainingSetA); 
 
