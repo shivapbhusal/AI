@@ -22,14 +22,14 @@ public:
 		threshold=threshold; 
 	}; 
 
-	void trainModel(int trainingData[4][4])
+	void trainModel(double trainingData[4][30])
 	{
 		int count=0; // Check for how many consecutive times there will be no changes in the weights.
 		int N=0; // No of iterations taken for training  
 
-		while(count<5)
+		while(count<=15)
 		{
-			for (int i=0;i<4;i++)
+			for (int i=0;i<15;i++)
 			{
 			   double currentResult=getResult(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
 			   double error=trainingData[3][i]-currentResult; 
@@ -72,18 +72,6 @@ public:
 		double result=x*weights[0]+y*weights[1]+z*weights[2]+weights[3];
 		return result;  
 
-	}
-
-	std::string classify(double x, double y, double z)
-	{
-		double result=getResult(x,y,z); 
-		if (result>0)
-		{
-			return "A"; 
-		}
-		else {
-			return "B"; 
-		}
 	}
 
 }; 
