@@ -52,4 +52,15 @@ for (int i=15;i<30;i++) // For A
    std::cout<<classify.classifyPoints(resultA,resultB,resultC)<<std::endl; 
 
    }
+
+   std::cout<<"Testing Result for second half of Class C dataset: "; 
+for (int i=15;i<30;i++) // For A 
+{
+   double  resultA=P1.getFinalResult(C.trainingSet[0][i],C.trainingSet[1][i],C.trainingSet[2][i]);
+   double  resultB=P2.getFinalResult(C.trainingSet[0][i],C.trainingSet[1][i],C.trainingSet[2][i]);
+   double  resultC=P3.getFinalResult(C.trainingSet[0][i],C.trainingSet[1][i],C.trainingSet[2][i]); 
+   std::cout<<C.trainingSet[0][i]<<","<<C.trainingSet[1][i]<<","<<C.trainingSet[2][i]<<": ";
+   std::cout<<classify.classifyPoints(resultA,resultB,resultC)<<std::endl; 
+
+   }
 }
