@@ -16,15 +16,15 @@ int  main()
 Perceptron P1(0.5,0); 
 Generate A(0,50,-50); 
 A.setDataValues();
-A.trainingSet[0][14]=-52; 
-A.trainingSet[1][14]=-52; 
-A.trainingSet[2][14]=-52; 
+A.trainingSet[0][14]=-25; 
+A.trainingSet[1][14]=-25; 
+A.trainingSet[2][14]=-25; 
 P1.trainModel(A.trainingSet); 
 
 Perceptron P2(0.5,0); 
 Generate B(-50,-50,-50); 
 B.setDataValues();
-B.trainingSet[0][14]=2; 
+B.trainingSet[0][14]=10; 
 B.trainingSet[1][14]=52; 
 B.trainingSet[2][14]=-52; 
 P2.trainModel(B.trainingSet); 
