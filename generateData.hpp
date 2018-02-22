@@ -26,6 +26,14 @@ class Generate {
 		x=c1; 
 		y=c2; 
 		z=c3; 
+
+	for (int k=0;k<=29;k++)
+    {
+  	trainingSet[0][k]=x; 
+  	trainingSet[1][k]=y; 
+  	trainingSet[2][k]=z; 
+    }
+
 	}; 
 
 	void setDataValues()
