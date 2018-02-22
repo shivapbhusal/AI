@@ -1,2 +1,2 @@
 all:
-		g++ perceptron.cpp -o perceptron
+		g++ main.cpp -o main

@@ -30,7 +30,7 @@ P3.trainModel(C.trainingSet);
 
 Classify classify; 
 
-std::cout<<"Testing Result for second half of Class A dataset: "; 
+std::cout<<"Testing Result for second half of Class A dataset: "<<std::endl; 
 for (int i=15;i<30;i++) // For A 
 {
    double  resultA=P1.getFinalResult(A.trainingSet[0][i],A.trainingSet[1][i],A.trainingSet[2][i]);
@@ -42,7 +42,7 @@ for (int i=15;i<30;i++) // For A
    }
 
 
-std::cout<<"Testing Result for second half of Class B dataset: "; 
+std::cout<<"Testing Result for second half of Class B dataset: "<<std::endl; 
 for (int i=15;i<30;i++) // For A 
 {
    double  resultA=P1.getFinalResult(B.trainingSet[0][i],B.trainingSet[1][i],B.trainingSet[2][i]);
@@ -53,7 +53,7 @@ for (int i=15;i<30;i++) // For A
 
    }
 
-   std::cout<<"Testing Result for second half of Class C dataset: "; 
+   std::cout<<"Testing Result for second half of Class C dataset: "<<std::endl; 
 for (int i=15;i<30;i++) // For A 
 {
    double  resultA=P1.getFinalResult(C.trainingSet[0][i],C.trainingSet[1][i],C.trainingSet[2][i]);
