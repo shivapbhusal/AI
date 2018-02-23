@@ -16,7 +16,7 @@ private:
     double weights[4]={0,0,0,0};  // Initialize all weights to 0 
   
 public:
-	Perceptron(double rate, double threshhold) // Initialize a perceptron with threshhold and learning rate. 
+	Perceptron(double rate, double threshhold) // Initializes a perceptron with threshhold and learning rate. 
 	{
 		learningRate=rate; 
 		threshold=threshold; 
@@ -38,7 +38,7 @@ public:
 			   	N=N+1;  
 			   }
 			   else {
-			     weights[0]=weights[0]+learningRate*error*trainingData[0][i]; 
+			     weights[0]=weights[0]+learningRate*error*trainingData[0][i]; // Make changes in the weight if there is an error. 
                  weights[1]=weights[1]+learningRate*error*trainingData[1][i]; 
                  weights[2]=weights[2]+learningRate*error*trainingData[2][i]; 
                  weights[3]=weights[3]+learningRate*error; 

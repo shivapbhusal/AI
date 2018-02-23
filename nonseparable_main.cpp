@@ -18,27 +18,36 @@ std::cout<<"Class A"<<std::endl;
 Perceptron P1(0.5,0); 
 Generate A(0,50,-50); 
 A.setDataValues();
-A.trainingSet[0][14]=-25; 
-A.trainingSet[1][14]=-25; 
-A.trainingSet[2][14]=-25; 
+A.trainingSet[0][14]=-49; 
+A.trainingSet[1][14]=-49; 
+A.trainingSet[2][14]=-49; 
+A.trainingSet[0][29]=-50; 
+A.trainingSet[1][29]=-50; 
+A.trainingSet[2][29]=-50;
 P1.trainModel(A.trainingSet); 
 
 std::cout<<"Class B"<<std::endl; 
 Perceptron P2(0.5,0); 
 Generate B(-50,-50,-50); 
 B.setDataValues();
-B.trainingSet[0][14]=10; 
-B.trainingSet[1][14]=52; 
-B.trainingSet[2][14]=-52; 
+B.trainingSet[0][14]=0; 
+B.trainingSet[1][14]=50; 
+B.trainingSet[2][14]=-50; 
+B.trainingSet[0][29]=0; 
+B.trainingSet[1][29]=49; 
+B.trainingSet[2][29]=51; 
 P2.trainModel(B.trainingSet); 
 
 std::cout<<"Class C"<<std::endl; 
 Perceptron P3(0.5,0); 
 Generate C(50,50,50);
 C.setDataValues(); 
-B.trainingSet[0][14]=-10; 
-B.trainingSet[1][14]=-10; 
-B.trainingSet[2][14]=-10; 
+B.trainingSet[0][14]=-20; 
+B.trainingSet[1][14]=-20; 
+B.trainingSet[2][14]=-20;
+B.trainingSet[0][29]=-30; 
+B.trainingSet[1][29]=-30; 
+B.trainingSet[2][29]=-30; 
 P3.trainModel(C.trainingSet); 
 
 Classify classify; 
@@ -54,6 +63,7 @@ for (int i=15;i<30;i++) // For A
    
    }
 
+std::cout<<std::endl; 
 
 std::cout<<"Testing Result for second half of Class B dataset: "<<std::endl; 
 for (int i=15;i<30;i++) // For A 
@@ -65,6 +75,7 @@ for (int i=15;i<30;i++) // For A
    std::cout<<classify.classifyPoints(resultA,resultB,resultC)<<std::endl; 
 
    }
+std::cout<<std::endl; 
 
    std::cout<<"Testing Result for second half of Class C dataset: "<<std::endl; 
 for (int i=15;i<30;i++) // For A 
