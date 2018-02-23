@@ -1,5 +1,5 @@
 /*
-Perceptron implementation in C++ 
+Class created for data generation  
 CS 6200
 Shiva Bhusal, Bowling Green State University
 
@@ -27,7 +27,7 @@ class Generate {
 		y=c2; 
 		z=c3; 
 
-	for (int k=0;k<=29;k++)
+	for (int k=0;k<=29;k++) // Set all the values with the centers of circle 
     {
   	trainingSet[0][k]=x; 
   	trainingSet[1][k]=y; 
@@ -36,6 +36,7 @@ class Generate {
 
 	}; 
 
+// Sets respective values of the points around the center with gradual increment. 
 	void setDataValues()
 	{
 		int j=0; 
@@ -69,6 +70,16 @@ class Generate {
 	}
 
 	std::cout<<"30 dataSets generated"<<std::endl;  
+
+	}
+
+	void readDataValues()
+	{
+
+	for (int k=0;k<=29;k++) // Read all the dataSets
+    {
+  	  std::cout<<trainingSet[0][k]<<" "<<trainingSet[1][k]<<" "<<trainingSet[2][k]<<std::endl; 
+    }
 
 	}
 		
