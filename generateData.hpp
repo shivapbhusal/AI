@@ -68,6 +68,7 @@ class Generate {
 		j=j+2; 
 	}
 
+	std::cout<<"30 dataSets generated"<<std::endl;  
 
 	}
 		

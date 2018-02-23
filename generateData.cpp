@@ -20,5 +20,7 @@ for (int k=0;k<=29;k++)
   	std::cout<<std::endl; 
   }
 
+ std::cout<<"30 dataSets created"; 
+
 return 0; 
 }

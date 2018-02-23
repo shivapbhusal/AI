@@ -50,7 +50,8 @@ public:
 			   
 		}
 
-		std::cout<<"Training successful with " <<N<<" iterations"<<"\n"; 
+		std::cout<<"Trainining Succesful using first 15 datasets"<<std::endl; 
+		std::cout<<"Total no of Iterations: "<<N<<std::endl<<std::endl; 
 
 	}; 
 

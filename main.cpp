@@ -13,16 +13,21 @@ CS 6200, Bowling Green State University
 int  main()
 {
 
+   std::cout<<"Centers of spheres:"<<"(0,50,-50),(-50,-50,-50),(50,50,50)"<<std::endl<<std::endl; 
+
+std::cout<<"Class A"<<std::endl; 
 Perceptron P1(0.5,0); 
 Generate A(0,50,-50); 
 A.setDataValues();
 P1.trainModel(A.trainingSet); 
 
+std::cout<<"Class B"<<std::endl; 
 Perceptron P2(0.5,0); 
 Generate B(-50,-50,-50); 
 B.setDataValues();
 P2.trainModel(B.trainingSet); 
 
+std::cout<<"Class C"<<std::endl; 
 Perceptron P3(0.5,0); 
 Generate C(50,50,50);
 C.setDataValues(); 
@@ -39,7 +44,8 @@ for (int i=15;i<30;i++) // For A
    std::cout<<A.trainingSet[0][i]<<","<<A.trainingSet[1][i]<<","<<A.trainingSet[2][i]<<": "; 
    std::cout<<classify.classifyPoints(resultA,resultB,resultC)<<std::endl; 
    
-   }
+}
+std::cout<<std::endl; 
 
 
 std::cout<<"Testing Result for second half of Class B dataset: "<<std::endl; 
@@ -52,6 +58,8 @@ for (int i=15;i<30;i++) // For A
    std::cout<<classify.classifyPoints(resultA,resultB,resultC)<<std::endl; 
 
    }
+
+std::cout<<std::endl; 
 
    std::cout<<"Testing Result for second half of Class C dataset: "<<std::endl; 
 for (int i=15;i<30;i++) // For A 
