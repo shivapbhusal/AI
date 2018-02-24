@@ -23,7 +23,7 @@ A.trainingSet[1][14]=90;
 A.trainingSet[2][14]=106; 
 A.trainingSet[0][29]=90; 
 A.trainingSet[1][29]=90; 
-A.trainingSet[2][29]=90;
+A.trainingSet[2][29]=100;
 A.readDataValues(); 
 P1.trainModel(A.trainingSet); 
 
@@ -44,12 +44,12 @@ std::cout<<"Class C"<<std::endl;
 Perceptron P3(0.5,0); 
 Generate C(50,50,50);
 C.setDataValues(); 
-B.trainingSet[0][14]=100; 
-B.trainingSet[1][14]=100; 
-B.trainingSet[2][14]=100;
-B.trainingSet[0][29]=105; 
-B.trainingSet[1][29]=105; 
-B.trainingSet[2][29]=105; 
+C.trainingSet[0][14]=-60; 
+C.trainingSet[1][14]=-60; 
+C.trainingSet[2][14]=-60;
+C.trainingSet[0][29]=-70; 
+C.trainingSet[1][29]=-70; 
+C.trainingSet[2][29]=-70; 
 C.readDataValues(); 
 P3.trainModel(C.trainingSet); 
 
