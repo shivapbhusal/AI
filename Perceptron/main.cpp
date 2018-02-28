@@ -34,15 +34,6 @@ double finalTrainingSet[3][45]=
 
 // Get the training DataSet in organized form 
 
-for (int i=0;i<45;i++)
-{
-   std::cout<<finalTrainingSet[0][i]; 
-   std::cout<<finalTrainingSet[1][i];
-   std::cout<<finalTrainingSet[2][i];
-   std::cout<<std::endl;   
-
-}
-
 for (int i=0;i<15;i++)
 {
    finalTrainingSet[0][i]=A.trainingSet[0][i];  
@@ -57,25 +48,40 @@ for (int i=0;i<15;i++)
 }
 
 // Train model with class A points 
-std::cout<<"Class A"<<std::endl; 
+std::cout<<std::endl<<"Perceptron 1 --Seprating A from others"<<std::endl; 
 Perceptron P1(0.5,0,'A'); 
 P1.trainModel(finalTrainingSet); // Array is passed to the training model. The training model uses only first 15 datasets. 
 
 std::cout<<"Weights are: "<<std::endl; 
 for (int i=0;i<=3;i++)
 {
-   std::cout<<P1.weights[i]<<std::endl;
+   std::cout<<P1.weights[i]<<" ";
 }
+std::cout<<std::endl<<std::endl; 
 
 // Train model with class B points 
-std::cout<<"Class B"<<std::endl; 
+std::cout<<"Perceptron 2--Separating B from others"<<std::endl; 
 Perceptron P2(0.5,0,'B'); 
 P2.trainModel(finalTrainingSet); 
 
+std::cout<<"Weights are: "<<std::endl; 
+for (int i=0;i<=3;i++)
+{
+   std::cout<<P2.weights[i]<<" ";
+}
+std::cout<<std::endl<<std::endl; 
+
 // Train model with class C points 
-std::cout<<"Class C"<<std::endl; 
+std::cout<<"Perceptron 3--Separating C from others"<<std::endl; 
 Perceptron P3(0.5,0,'C'); 
 P3.trainModel(finalTrainingSet); 
+
+std::cout<<"Weights are: "<<std::endl; 
+for (int i=0;i<=3;i++)
+{
+   std::cout<<P3.weights[i]<<" ";
+}
+std::cout<<std::endl<<std::endl; 
 
 Classify classify; 
 
