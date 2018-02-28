@@ -13,44 +13,66 @@ class Perceptron {
 private:
 	double learningRate; 
 	double threshold;
-    double weights[4]={0,0,0,0};  // Initialize all weights to 0 
+    double expectedOutput[45]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}; 
   
 public:
-	Perceptron(double rate, double threshhold) // Initializes a perceptron with threshhold and learning rate. 
+	double weights[4]={0,0,0,0};  // Initialize all weights to 0 
+	Perceptron(double rate, double threshhold, char classType) // Initializes a perceptron with threshhold and learning rate. 
 	{
 		learningRate=rate; 
 		threshold=threshold; 
+		if (classType=='A'){
+			for (int i=0;i<15;i++)
+			{
+				expectedOutput[i]=1; 
+			}
+		}
+		else if (classType=='B'){
+			for (int i=15;i<30;i++)
+			{
+				expectedOutput[i]=1; 
+			}
+		}
+		else if (classType=='C'){
+			for (int i=30;i<45;i++)
+			{
+				expectedOutput[i]=1; 
+			}
+		}
+		else {
+			std::cout<<"check the classType, it should be A, B or C"; 
+		}
 	}; 
 
-	void trainModel(double trainingData[4][30])
+	void trainModel(double trainingData[3][45])
 	{
 		int count=0; // Check for how many consecutive times there will be no changes in the weights.
 		int N=0; // No of iterations taken for training  
 
-		while(count<=15)
+		while(count<=45)
 		{
-			for (int i=0;i<15;i++)
+			for (int i=0;i<45;i++)
 			{
-			   double currentResult=getResult(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
-			   double error=trainingData[3][i]-currentResult; 
+			   double currentOutput=getResult(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
+			   double error=expectedOutput[i]-currentOutput; 
 			   if (error==0){
-			   	count=count+1;
-			   	N=N+1;  
+			   	count=count+1; 
 			   }
 			   else {
 			     weights[0]=weights[0]+learningRate*error*trainingData[0][i]; // Make changes in the weight if there is an error. 
                  weights[1]=weights[1]+learningRate*error*trainingData[1][i]; 
                  weights[2]=weights[2]+learningRate*error*trainingData[2][i]; 
                  weights[3]=weights[3]+learningRate*error; 
-                 N=N+1;
                  count=0;  
 			   }
+
+			   N=N+1; 
 			   
 			 }
 			   
 		}
 
-		std::cout<<"Trainining Succesful using first 15 datasets"<<std::endl; 
+		std::cout<<"Trainining Succesful using first 15 datasets of each classes"<<std::endl; 
 		std::cout<<"Total no of Iterations: "<<N<<std::endl<<std::endl; 
 
 	}; 
