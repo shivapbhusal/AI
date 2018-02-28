@@ -17,9 +17,9 @@ int  main()
 std::cout<<"Class A"<<std::endl; 
 Generate A(0,50,-50); 
 A.setDataValues();
-A.trainingSet[0][14]=-100; 
-A.trainingSet[1][14]=-100; 
-A.trainingSet[2][14]=-106; 
+A.trainingSet[0][14]=50; 
+A.trainingSet[1][14]=50; 
+A.trainingSet[2][14]=50; 
 A.trainingSet[0][29]=90; 
 A.trainingSet[1][29]=90; 
 A.trainingSet[2][29]=100;

@@ -100,12 +100,10 @@ public:
 
 	void checkIteration(int N)
 	{
-		if (N==100000){
-			std::cout<<"Warning: 100000 iterations completed"; 
+		if (N>1000000000){
+			std::cout<<"Warning ! Stop !"<<N<<" Iterations completed"<<std::endl;  
 		}
-		else if (N==1000000000){
-			std::cout<<"Warning: 1000000000 iterations completed"; 
-		}
+		
 	}
 
 }; 
