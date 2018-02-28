@@ -66,7 +66,8 @@ public:
                  count=0;  
 			   }
 
-			   N=N+1; 
+			   N=N+1;
+			   checkIteration(N);  
 			   
 			 }
 			   
@@ -95,6 +96,16 @@ public:
 		double result=x*weights[0]+y*weights[1]+z*weights[2]+weights[3];
 		return result;  
 
+	}
+
+	void checkIteration(int N)
+	{
+		if (N==100000){
+			std::cout<<"Warning: 100000 iterations completed"; 
+		}
+		else if (N==1000000000){
+			std::cout<<"Warning: 1000000000 iterations completed"; 
+		}
 	}
 
 }; 

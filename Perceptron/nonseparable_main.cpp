@@ -17,9 +17,9 @@ int  main()
 std::cout<<"Class A"<<std::endl; 
 Generate A(0,50,-50); 
 A.setDataValues();
-A.trainingSet[0][14]=90; 
-A.trainingSet[1][14]=90; 
-A.trainingSet[2][14]=106; 
+A.trainingSet[0][14]=-100; 
+A.trainingSet[1][14]=-100; 
+A.trainingSet[2][14]=-106; 
 A.trainingSet[0][29]=90; 
 A.trainingSet[1][29]=90; 
 A.trainingSet[2][29]=100;
@@ -39,12 +39,12 @@ B.readDataValues();
 std::cout<<"Class C"<<std::endl; 
 Generate C(50,50,50);
 C.setDataValues(); 
-C.trainingSet[0][14]=-60; 
-C.trainingSet[1][14]=-60; 
-C.trainingSet[2][14]=-60;
-C.trainingSet[0][29]=-70; 
-C.trainingSet[1][29]=-70; 
-C.trainingSet[2][29]=-70; 
+C.trainingSet[0][14]=0; 
+C.trainingSet[1][14]=60; 
+C.trainingSet[2][14]=-50;
+C.trainingSet[0][29]=0; 
+C.trainingSet[1][29]=61; 
+C.trainingSet[2][29]=-50; 
 C.readDataValues(); 
 
 double finalTrainingSet[3][45]=
