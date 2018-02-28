@@ -1,6 +1,12 @@
 /*
 Perceptron implementation in C++
 Author: Shiva Bhusal, CS 6200
+
+Class Perceptron has been implemented in perceptron.hpp. It is used for training purpose. 
+Class Generate has been implemented in generateData.hpp. It is used for generating test and training dataset. 
+Class Classify has been implemented in Classify.hpp. It is used to make final classification. 
+
+This file deals with Case 1: Separable 
 */ 
 
 #include<iostream>
@@ -25,6 +31,7 @@ Generate C(50,50,50);
 C.setDataValues(); 
 C.readDataValues(); 
 
+// Initial setup for Organized form of training dataset 
 double finalTrainingSet[3][45]=
 {
   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},

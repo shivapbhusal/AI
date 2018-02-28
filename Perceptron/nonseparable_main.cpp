@@ -1,8 +1,12 @@
 /*
 Perceptron implementation in C++
-Shiva Bhusal 
-CS 6200, Bowling Green State University
+Author: Shiva Bhusal, CS 6200
 
+Class Perceptron has been implemented in perceptron.hpp. It is used for training purpose. 
+Class Generate has been implemented in generateData.hpp. It is used for generating test and training dataset. 
+Class Classify has been implemented in Classify.hpp. It is used to make final classification. 
+
+This file deals with Case 2: Non-Separable 
 */ 
 
 #include<iostream>
@@ -71,7 +75,7 @@ for (int i=0;i<15;i++)
 
 // Train model with class A points 
 std::cout<<std::endl<<"Perceptron 1 --Seprating A from others"<<std::endl; 
-Perceptron P1(0.5,0,'A'); 
+Perceptron P1(0.9,0,'A'); 
 P1.trainModel(finalTrainingSet); // Array is passed to the training model. The training model uses only first 15 datasets. 
 
 std::cout<<"Weights are: "<<std::endl; 
