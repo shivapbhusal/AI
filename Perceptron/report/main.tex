@@ -25,7 +25,7 @@ pdftitle={\name - \reporttitle},pdfauthor={\name}, unicode]{hyperref}
 %%% Let's add sections here. 
   
   \section{Introduction}
-  In this report, the experimental results of the percentron implementation has been presented. The results have been based on two different cases: 1. When all the datasets are linearly seperable, and 2. When one of the datasets is not linearly separable. The Appendix section shows the demo screenshots of the implementation performed. 
+  In this report, the experimental results of the percentron implementation has been presented. The results have been based on two different cases: 1. When all the datasets are linearly separable, and 2. When one of the datasets is not linearly separable. The Appendix section shows the demo screenshots of the implementation performed. 
 
   \section {Experimental Results}
   \subsection {DataSet generation}
@@ -33,7 +33,7 @@ pdftitle={\name - \reporttitle},pdfauthor={\name}, unicode]{hyperref}
 
   The attached screenshot in the Appendix section shows the demo result of dataset generation. 
   
-  Similarly, datasets are also generated for the class B and Class C, and training is done seperately for each of the classes. 
+  Similarly, datasets were also generated for the class B and Class C, and training is done seperately for each of the classes. 
 
   The three centers of spheres are (0,50,-50),(-50,-50,-50), and (50,50,50) respectively. 
 
@@ -229,9 +229,16 @@ Data Points& Class\\
 
 Accuracy=No of correct classifications/ Total dataSets =16/45=35.5 percent 
 
-  \section {Summary}
+\section {Summary}
   In part 1 where all the points were linearly separable, the model was 100 percent accurate for all the given test dataSet whereas in part 2 where 1 point was linearly inseparable in the training Set, the model gave suprising results with just 35 percent accuracy. The changes in the learning rate changes the no of iterations it takes to converse into the correct values of the weights. 
-  \section {Appendix}
+  
+\section {Appendix}
+
+\begin{figure}[h]
+\caption{Initial Build and Run}
+\centering
+\includegraphics[width=10cm,height=8cm]{make}
+\end{figure}
 
 \begin{figure}[h]
 \caption{Dataset generation for the given center of spheres}
