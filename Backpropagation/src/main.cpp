@@ -6,6 +6,7 @@ Author: Shiva Bhusal, CS 6200
 
 #include<iostream>
 #include "generateData.hpp"
+#include "BackProp.hpp"
 
 int  main()
 {
