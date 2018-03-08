@@ -43,20 +43,25 @@ N1.calculateOutput(10)
 N2=Node()
 N3=Node()
 
-# Step 1
+# Step 1: Calculate the weights
 
-inputN1=W[0][0]*inputs[0]+W[0][1]*inputs[1]
+inputN1=W[0][0]*inputs[0]+W[0][1]*inputs[1]+b1
 N1.calculateOutput(inputN1)
 
-inputN2=W[0][2]*inputs[0]+W[0][3]*inputs[1]
+inputN2=W[0][2]*inputs[0]+W[0][3]*inputs[1]+b1
 N2.calculateOutput(inputN2)
 
-inputN3=N1.getOutput()*W[1][0]+N2.getOutput()*W[1][1]
+inputN3=N1.getOutput()*W[1][0]+N2.getOutput()*W[1][1]+b2
 N3.calculateOutput(inputN3)
 
 # Check the output of Step 1
-print(N3.getOutput())
-        
+result=N3.getOutput()
+expected=1
+
+#Step 2: Calculate the error response
+error=(math.pow((result-expected),2))/2
+
+print(error)
 
 
 
