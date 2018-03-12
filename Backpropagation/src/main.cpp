@@ -7,6 +7,7 @@ Author: Shiva Bhusal, CS 6200
 #include<iostream>
 #include "generateData.hpp"
 #include "BackProp.hpp"
+#include "Classify.hpp"
 
 int  main()
 {
@@ -50,5 +51,10 @@ for (int i=0;i<15;i++)
 
 BackProp network; 
 network.trainModel(finalTrainingSet);  
+
+for (int i=15;i<30;i++)
+{
+  network.calculateFinal(A.trainingSet[1][i],A.trainingSet[2][i],A.trainingSet[2][i]); 
+}
 
 }

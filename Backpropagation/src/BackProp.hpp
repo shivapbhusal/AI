@@ -14,20 +14,12 @@ class Node
 
 public:
 	double const THETA=0.5; 
-	double w1=0; 
-	double w2=0; 
-	double w3=0; 
-	double bias=0.2; 
+	double w1=0.1; 
+	double w2=0.1; 
+	double w3=0.1; 
+	double bias=0.1; 
 	double total=0; 
-	double output=0; 
-
-    Node (double a, double b, double c, double d)
-	{
-		w1=a; 
-		w2=b; 
-		w3=c; 
-		bias=d;  
-	}
+	double output=0;
 
 	void updateWeight(double adjustment, double indicator)
 	{
@@ -48,7 +40,9 @@ public:
 	double getOutput(double x, double y, double z)
 	{
 		total=w1*x+w2*y+w3*z+bias; 
-		output=(1/(1+pow(2.7,total)));
+		output=1/(1+pow(2.7,total));
+
+		//std::cout<<output; 
 		return output;   
 	}
 }; 
@@ -56,16 +50,22 @@ public:
 class BackProp{
 
 	public: 
+
+		// To find the output for test dataset after the training process.
+		double finalOutput1=0; 
+		double finalOutput2=0; 
+		double finalOutput3=0; 
+
 		double errorTotal=1;
 		// Create three hidden nodes. 
-		Node *H1=new Node(0.1,0.1,0.1,0.1); 
-		Node *H2=new Node(0.1,0.1,0.1,0.1); 
-		Node *H3=new Node(0.1,0.1,0.1,0.1); 
+		Node *H1=new Node(); 
+		Node *H2=new Node(); 
+		Node *H3=new Node(); 
 
 		//Create three output Nodes. 
-	    Node *out1=new Node(0.5,0.6,0.7,0.1); 
-	    Node *out2=new Node(0.5,0.6,0.7,0.1); 
-	    Node *out3=new Node(0.5,0.6,0.7,0.1); 
+	    Node *out1=new Node(); 
+	    Node *out2=new Node(); 
+	    Node *out3=new Node(); 
 
 
 	void trainModel(double trainingData[3][45])
@@ -79,23 +79,23 @@ class BackProp{
 		{
 			if (i<15)
 			{
-				expectedA=1; 
-				expectedB=0; 
-				expectedC=0; 
+				expectedA=0.8; 
+				expectedB=0.1; 
+				expectedC=0.1; 
 			}
 
 			else if ((i>=15) && (i<30))
 			{
-				expectedA=0; 
-				expectedB=1; 
-				expectedC=0; 
+				expectedA=0.1; 
+				expectedB=0.8; 
+				expectedC=0.1; 
 
 			}
 			else if ((i>=30) && (i<45)) 
 			{
-				expectedA=0; 
-				expectedB=0; 
-				expectedC=1; 
+				expectedA=0.1; 
+				expectedB=0.1; 
+				expectedC=0.8; 
 			}
 			else {
 				std::cout<<"Extra training dataSets detected."; 
@@ -134,25 +134,47 @@ class BackProp{
 			// Weight adjustment -- Two
 
 			adjustment=(H1->w1)*-(expectedA-resultA)*(out1->output)*(1-(out1->output));  
-			out1->updateWeight(adjustment,1); 
-			out1->updateWeight(adjustment,2);
-			out1->updateWeight(adjustment,3); 
+			H1->updateWeight(adjustment,1); 
+			H1->updateWeight(adjustment,2);
+			H1->updateWeight(adjustment,3); 
 
 			adjustment=(H2->w1)*-(expectedA-resultA)*(out2->output)*(1-(out2->output));  
-			out1->updateWeight(adjustment,1); 
-			out1->updateWeight(adjustment,2);
-			out1->updateWeight(adjustment,3); 
+			H2->updateWeight(adjustment,1); 
+			H2->updateWeight(adjustment,2);
+			H2->updateWeight(adjustment,3); 
 
 			adjustment=(H2->w1)*-(expectedA-resultA)*(out3->output)*(1-(out3->output));  
-			out1->updateWeight(adjustment,1); 
-			out1->updateWeight(adjustment,2);
-			out1->updateWeight(adjustment,3); 
+			H3->updateWeight(adjustment,1); 
+			H3->updateWeight(adjustment,2);
+			H3->updateWeight(adjustment,3); 
 
 		}
-		std::cout<<H1->w1<<H1->w2<<H1->w3; 
 		std::cout<<errorTotal<<" "<<count<<std::endl; 
 	}
 }
+
+   void calculateFinal(double x, double y, double z)
+   {
+   	    double total1=H1->w1*x+H1->w2*y+H1->w3*z+H1->bias; 
+		double output1=1/(1+pow(2.7,total1));
+
+   	    double total2=H2->w1*x+H2->w2*y+H2->w3*z+H1->bias; 
+		double output2=1/(1+pow(2.7,total2));
+
+		double total3=H2->w1*x+H2->w2*y+H2->w3*z+H1->bias; 
+		double output3=1/(1+pow(2.7,total3));
+
+		double total4=out1->w1*output1+out1->w2*output2+out1->w3*output3+out1->bias;
+		finalOutput1=1/(1+pow(2.7,total4));
+
+		double total5=out2->w1*output1+out2->w2*output2+out2->w3*output3+out2->bias;
+		finalOutput2=1/(1+pow(2.7,total5));
+
+		double total6=out3->w1*output1+out3->w2*output2+out3->w3*output3+out3->bias;
+		finalOutput3=1/(1+pow(2.7,total6));
+
+		std::cout<<finalOutput1<<" "<<finalOutput2<<" "<<finalOutput3<<std::endl; 
+   }
 }; 
 
 #endif 
