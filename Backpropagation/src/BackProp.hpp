@@ -17,6 +17,8 @@ public:
 	double w2=0; 
 	double w3=0; 
 	double bias=0.2; 
+	double total=0; 
+	double output=0; 
 
     Node (double a, double b, double c, double d)
 	{
@@ -26,17 +28,15 @@ public:
 		bias=d;  
 	}
 
-	void updateWeight(double newW1, double newW2, double newW3)
+	void updateWeight(double error)
 	{
-		w1=newW1; 
-		w2=newW2; 
-		w3=newW3; 
+		
 	}
 
 	double getOutput(double x, double y, double z)
 	{
-		double total=w1*x+w2*y+w3*z+bias; 
-		double output=(1/(1+pow(2.7,total)));
+		total=w1*x+w2*y+w3*z+bias; 
+		output=(1/(1+pow(2.7,total)));
 		return output;   
 	}
 }; 
@@ -95,7 +95,15 @@ class BackProp{
 			double errorB=pow((resultB-expectedB),2)/2; 
 			double errorC=pow((resultC-expectedC),2)/2; 
 
-			std::cout<<errorA<<" "<<errorB<<" "<<errorC<<std::endl; 
+			double errorTotal=errorA+errorB+errorC; 
+
+			double dEOut=-(expectedA-resultA);
+			double dOutNet=(out1->output)*(1-(out1->output)); 
+			double dNetW=H1->output; 
+
+			double adjustment=dEOut*dOutNet*dNetW;  
+
+			std::cout<<errorTotal<<" "<<adjustment<<std::endl; 
 
 		}
 	}
