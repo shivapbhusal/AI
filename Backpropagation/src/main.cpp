@@ -49,9 +49,6 @@ for (int i=0;i<15;i++)
 }
 
 BackProp network; 
-network.trainModel(finalTrainingSet); 
-Node *H=network.H1; 
-
-std::cout<<H->getOutput(10,10,10);
+network.trainModel(finalTrainingSet);  
 
 }

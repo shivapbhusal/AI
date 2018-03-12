@@ -56,6 +56,7 @@ public:
 class BackProp{
 
 	public: 
+		double errorTotal=1;
 		// Create three hidden nodes. 
 		Node *H1=new Node(0.1,0.1,0.1,0.1); 
 		Node *H2=new Node(0.1,0.1,0.1,0.1); 
@@ -69,6 +70,10 @@ class BackProp{
 
 	void trainModel(double trainingData[3][45])
 	{
+		int count=0; 
+		while (errorTotal>0.1)
+		{
+			count=count+1; 
 		double expectedA=0, expectedB=0,expectedC=0; // Initialize  
 		for (int i=0;i<45;i++)
 		{
@@ -107,17 +112,47 @@ class BackProp{
 			double errorB=pow((resultB-expectedB),2)/2; 
 			double errorC=pow((resultC-expectedC),2)/2; 
 
-			double errorTotal=errorA+errorB+errorC; 
-			double dEOut=-(expectedA-resultA);
-			double dOutNet=(out1->output)*(1-(out1->output)); 
-			double dNetW=H1->total; 
-			double adjustment=dEOut*dOutNet*dNetW;  
-			out1->updateWeight(adjustment,1); 
+			// Weight adjustment --One 
 
-			std::cout<<errorTotal<<" "<<adjustment<<std::endl; 
+			errorTotal=errorA+errorB+errorC; 
+
+			double adjustment=-(expectedA-resultA)*(out1->output)*(1-(out1->output))*H1->output;  
+			out1->updateWeight(adjustment,1); 
+			out1->updateWeight(adjustment,2);
+			out1->updateWeight(adjustment,3); 
+
+			adjustment=-(expectedA-resultA)*(out2->output)*(1-(out2->output))*H2->output;  
+			out2->updateWeight(adjustment,1); 
+			out2->updateWeight(adjustment,2);
+			out2->updateWeight(adjustment,3); 
+
+			adjustment=-(expectedA-resultA)*(out3->output)*(1-(out3->output))*H3->output;  
+			out3->updateWeight(adjustment,1); 
+			out3->updateWeight(adjustment,2);
+			out3->updateWeight(adjustment,3); 
+
+			// Weight adjustment -- Two
+
+			adjustment=(H1->w1)*-(expectedA-resultA)*(out1->output)*(1-(out1->output));  
+			out1->updateWeight(adjustment,1); 
+			out1->updateWeight(adjustment,2);
+			out1->updateWeight(adjustment,3); 
+
+			adjustment=(H2->w1)*-(expectedA-resultA)*(out2->output)*(1-(out2->output));  
+			out1->updateWeight(adjustment,1); 
+			out1->updateWeight(adjustment,2);
+			out1->updateWeight(adjustment,3); 
+
+			adjustment=(H2->w1)*-(expectedA-resultA)*(out3->output)*(1-(out3->output));  
+			out1->updateWeight(adjustment,1); 
+			out1->updateWeight(adjustment,2);
+			out1->updateWeight(adjustment,3); 
 
 		}
+		std::cout<<H1->w1<<H1->w2<<H1->w3; 
+		std::cout<<errorTotal<<" "<<count<<std::endl; 
 	}
+}
 }; 
 
 #endif 
