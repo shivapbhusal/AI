@@ -60,6 +60,11 @@ class BackProp{
 		double outNetH1=H1->getOutput(x,y,z); 
 		double outNetH2=H2->getOutput(x,y,z); 
 		double outNetH3=H3->getOutput(x,y,z); 
+
+		double resultA=out1->getOutput(outNetH1,outNetH2,outNetH3);
+		double resultB=out2->getOutput(outNetH1,outNetH2,outNetH3); 
+		double resultC=out3->getOutput(outNetH1,outNetH2,outNetH3);
+
 	}
 }; 
 
