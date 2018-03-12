@@ -13,6 +13,7 @@ class Node
 {
 
 public:
+	double const THETA=0.5; 
 	double w1=0; 
 	double w2=0; 
 	double w3=0; 
@@ -28,9 +29,20 @@ public:
 		bias=d;  
 	}
 
-	void updateWeight(double error)
+	void updateWeight(double adjustment, double indicator)
 	{
-		
+		if (indicator==1){
+		w1=w1-THETA*adjustment; 	
+		}
+		else if (indicator==2){
+			w2=w2-THETA*adjustment; 
+		}
+		else if (indicator==3){
+			w3=w3-THETA*adjustment; 
+		}
+		else {
+			std::cout<<"Invalid value of indicator"; 
+		}
 	}
 
 	double getOutput(double x, double y, double z)
@@ -96,12 +108,11 @@ class BackProp{
 			double errorC=pow((resultC-expectedC),2)/2; 
 
 			double errorTotal=errorA+errorB+errorC; 
-
 			double dEOut=-(expectedA-resultA);
 			double dOutNet=(out1->output)*(1-(out1->output)); 
-			double dNetW=H1->output; 
-
+			double dNetW=H1->total; 
 			double adjustment=dEOut*dOutNet*dNetW;  
+			out1->updateWeight(adjustment,1); 
 
 			std::cout<<errorTotal<<" "<<adjustment<<std::endl; 
 
