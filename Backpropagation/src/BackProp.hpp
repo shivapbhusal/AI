@@ -55,16 +55,47 @@ class BackProp{
 	    Node *out3=new Node(0.5,0.6,0.7,0.1); 
 
 
-	void trainModel(double x, double y, double z, double expected)
+	void trainModel(double trainingData[3][45])
 	{
-		double outNetH1=H1->getOutput(x,y,z); 
-		double outNetH2=H2->getOutput(x,y,z); 
-		double outNetH3=H3->getOutput(x,y,z); 
+		double expectedA=0, expectedB=0,expectedC=0; // Initialize  
+		for (int i=0;i<15;i++)
+		{
+			if (i<15)
+			{
+				expectedA=1; 
+				expectedB=0; 
+				expectedC=0; 
+			}
 
-		double resultA=out1->getOutput(outNetH1,outNetH2,outNetH3);
-		double resultB=out2->getOutput(outNetH1,outNetH2,outNetH3); 
-		double resultC=out3->getOutput(outNetH1,outNetH2,outNetH3);
+			else if ((i>=15) && (i<30))
+			{
+				expectedA=0; 
+				expectedB=1; 
+				expectedC=0; 
 
+			}
+			else if ((i>=30) && (i<45)) 
+			{
+				expectedA=0; 
+				expectedB=0; 
+				expectedC=1; 
+			}
+			else {
+				std::cout<<"Extra training dataSets detected."; 
+			}
+			double outNetH1=H1->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
+			double outNetH2=H2->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
+			double outNetH3=H3->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
+
+			double resultA=out1->getOutput(outNetH1,outNetH2,outNetH3);
+			double resultB=out2->getOutput(outNetH1,outNetH2,outNetH3); 
+			double resultC=out3->getOutput(outNetH1,outNetH2,outNetH3);
+
+			double errorA=pow((resultA-expectedA),2)/2; 
+			double errorB=pow((resultB-expectedB),2)/2; 
+			double errorC=pow((resultC-expectedC),2)/2; 
+
+		}
 	}
 }; 
 
