@@ -26,6 +26,8 @@ C.setDataValues();
 C.readDataValues(); 
 
 BackProp network; 
+
+network.H->calculateOutput(10,10,10); 
 std::cout<<network.H->output; 
 
 }

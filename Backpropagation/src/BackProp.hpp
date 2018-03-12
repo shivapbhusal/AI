@@ -5,19 +5,30 @@ Shiva Bhusal, Bowling Green State University
 
 */
 
-struct HiddenNode 
-{
-	double w1; 
-	double w2; 
-	double w3; 
-	double output; 
+#include <math.h>  
 
-    HiddenNode (double a, double b, double c)
+class HiddenNode 
+{
+
+public:
+	double w1=0; 
+	double w2=0; 
+	double w3=0; 
+	double bias=0; 
+	double output=0; 
+
+    HiddenNode (double a, double b, double c, double d)
 	{
 		w1=a; 
 		w2=b; 
 		w3=c; 
-		output=a*b*c; 
+		bias=d;  
+	}
+
+	void calculateOutput(double x, double y, double z)
+	{
+		double total=w1*x+w2*y+w3*z+bias; 
+		output=(1/(1+pow(2.7,total)));  
 	}
 }; 
 
@@ -28,7 +39,7 @@ class BackProp{
 	private:
 
 	public: 
-		HiddenNode *H=new HiddenNode(10,10,10); 
+		HiddenNode *H=new HiddenNode(0.1,0.1,0.1,0.1); 
 }; 
 
 #endif 
