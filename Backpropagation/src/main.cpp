@@ -25,4 +25,7 @@ Generate C(50,50,50);
 C.setDataValues(); 
 C.readDataValues(); 
 
+BackProp network; 
+std::cout<<network.H->output; 
+
 }
