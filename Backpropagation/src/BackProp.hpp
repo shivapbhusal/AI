@@ -58,7 +58,7 @@ class BackProp{
 	void trainModel(double trainingData[3][45])
 	{
 		double expectedA=0, expectedB=0,expectedC=0; // Initialize  
-		for (int i=0;i<15;i++)
+		for (int i=0;i<45;i++)
 		{
 			if (i<15)
 			{
@@ -94,6 +94,8 @@ class BackProp{
 			double errorA=pow((resultA-expectedA),2)/2; 
 			double errorB=pow((resultB-expectedB),2)/2; 
 			double errorC=pow((resultC-expectedC),2)/2; 
+
+			std::cout<<errorA<<" "<<errorB<<" "<<errorC<<std::endl; 
 
 		}
 	}
