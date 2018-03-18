@@ -28,8 +28,11 @@ public:
 	void feedForward(const Layer &prevLayer); 
 	void calcOutputsGradients(double targetVals); 
 	void calcHiddenGradients(const Layer &nextLayer); 
+	void updateInputWeights(Layer &prevLayer); 
 
 private: 
+	static double eta; 
+	static double alpha; 
 	static double transferFunction(double x); 
 	static double transferFunctionDerivative(double x); 
 	static double randomWeight(void){return rand()/double(RAND_MAX);}; 
@@ -39,6 +42,23 @@ private:
 	unsigned m_myIndex; 
 	double m_outputVal; 
 
+}
+
+double Neuron::eta=0.15; 
+double Neuron::alpha=0.5; 
+
+void Neuron::updateInputWeights(Layer &prevLayer)
+{
+	for (unsigned n=0; n<prevLayer.size(); ++n)
+	{
+		Neuron &neuron=prevLayer[n]; 
+		double oldDeltaWeight=neuron.m_outputWeights[m_myIndex].deltaWeight; 
+
+		double newDeltaWeight=eta*neuron.getOutputVal()*m_gradient+alpha*oldDeltaWeight; 
+
+		neuron.m_outputWeights[m_myIndex].deltaWeight=newDeltaWeight; 
+		neuron.m_outputWeights[m_myIndex].weight+=newDeltaWeight; 
+	}
 }
 
 double Neuron::sumDOW(const Layer &nextLayer) const {
@@ -106,6 +126,15 @@ public:
 private: 
 	std::vector<Layer> m_layers;
 }; 
+
+void Net::getResults(std::vector<double> &resultVals) const 
+{
+	resultVals.clear(); 
+
+	for (unsigned n=0; n<m_layers.back().size()-1; ++n){
+		resultVals.push_back(m_layers.back()[n].getOutputVal()); 
+	}
+}
 
 void Net::backProp(const std::vector<double> targetVals)
 {
