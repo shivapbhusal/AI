@@ -13,7 +13,7 @@ int  main()
 
 std::cout<<"Centers of spheres:"<<"(0,50,-50),(-50,-50,-50),(50,50,50)"<<std::endl<<std::endl; 
 
-Generate A(0,50,-50); 
+Generate A(50,50,-50); 
 A.setDataValues(); // generates 30 datasets around the chosen center. 
 A.readDataValues(); 
 
@@ -54,6 +54,16 @@ network.trainModel(finalTrainingSet);
 for (int i=15;i<30;i++)
 {
   network.calculateFinal(A.trainingSet[1][i],A.trainingSet[2][i],A.trainingSet[2][i]); 
+}
+
+for (int i=15;i<30;i++)
+{
+  network.calculateFinal(B.trainingSet[1][i],B.trainingSet[2][i],B.trainingSet[2][i]); 
+}
+
+for (int i=15;i<30;i++)
+{
+  network.calculateFinal(C.trainingSet[1][i],C.trainingSet[2][i],C.trainingSet[2][i]); 
 }
 
 }
