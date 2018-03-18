@@ -65,12 +65,14 @@ class BackProp{
 
 	void trainModel(double trainingData[4][45])
 	{
+		double error=0; 
 		int count=0; 
-		while (count<1000)
+		double totalError=0.5; 
+		while (totalError>0.1)
 		{
-			count=count+1;  
-
-		for (int i=0;i<45;i++)
+			count=count+1; 
+			totalError=0; 
+			for (int i=0;i<45;i++)
 			{
 			double outNetH1=H1->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
 			double outNetH2=H2->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
@@ -79,7 +81,7 @@ class BackProp{
 			double result=out->getOutput(outNetH1,outNetH2,outNetH3);
 			double expected=trainingData[3][i]; 
 
-			double error=sqrt(result-expected); 
+			error=sqrt(abs(result-expected)); 
 
 			double adjustment=-error*(out->output)*(1-(out->output))*H1->output;  
 			out->updateWeight(adjustment,1); 
@@ -105,10 +107,11 @@ class BackProp{
 
 		}
 
-
+		totalError=totalError+error;
+		std::cout<<totalError<<" "<<count<<std::endl;  
+		
 			}
 		
-					std::cout<<errorTotal<<" "<<count<<std::endl; 
 	}
 
    void calculateFinal(double x, double y, double z)
