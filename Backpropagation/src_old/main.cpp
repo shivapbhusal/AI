@@ -1,7 +1,6 @@
 /*
 Backpropagation implementation in C++
 Author: Shiva Bhusal, CS 6200
-
 */ 
 
 #include<iostream>
@@ -27,13 +26,11 @@ C.setDataValues();
 C.readDataValues(); 
 
 // Initial setup for Organized form of training dataset 
-double finalTrainingSet[4][45]=
+double finalTrainingSet[3][45]=
 {
   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
   { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-   {  0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9, 0.5,0.5,0.5,0.5,0.5,0.5,0.5,
-    0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5, 0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1,0.1}
+  { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 };
 
 // Get the training DataSet in organized form 
@@ -57,16 +54,6 @@ network.trainModel(finalTrainingSet);
 for (int i=15;i<30;i++)
 {
   network.calculateFinal(A.trainingSet[1][i],A.trainingSet[2][i],A.trainingSet[2][i]); 
-}
-
-for (int i=15;i<30;i++)
-{
-  network.calculateFinal(B.trainingSet[1][i],B.trainingSet[2][i],B.trainingSet[2][i]); 
-}
-
-for (int i=15;i<30;i++)
-{
-  network.calculateFinal(C.trainingSet[1][i],C.trainingSet[2][i],C.trainingSet[2][i]); 
 }
 
 }
