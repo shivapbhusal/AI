@@ -40,7 +40,7 @@ public:
 	double getOutput(double x, double y, double z)
 	{
 		total=w1*x+w2*y+w3*z+bias; 
-		output=1/(1+pow(2.7,total));
+		output=1/(1+exp(total));
 
 		//std::cout<<output; 
 		return output;   
@@ -67,13 +67,13 @@ class BackProp{
 	{
 		double error=0; 
 		int count=0; 
-		double totalError=0.5; 
-		while (totalError>0.1)
-		{
-			count=count+1; 
+		double totalError=0.9; 
+		while (totalError>0.73)
+		{		
 			totalError=0; 
 			for (int i=0;i<45;i++)
 			{
+				count=count+1; 
 			double outNetH1=H1->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
 			double outNetH2=H2->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
 			double outNetH3=H3->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
@@ -83,31 +83,42 @@ class BackProp{
 
 			error=sqrt(abs(result-expected)); 
 
-			double adjustment=-error*(out->output)*(1-(out->output))*H1->output;  
-			out->updateWeight(adjustment,1); 
-			out->updateWeight(adjustment,2);
-			out->updateWeight(adjustment,3); 
+
+			// Back Propagation
+
+			double adjustment1=-error*(out->output)*(1-(out->output))*H1->output;  
+			double adjustment2=-error*(out->output)*(1-(out->output))*H2->output; 
+			double adjustment3=-error*(out->output)*(1-(out->output))*H3->output;   
+			out->updateWeight(adjustment1,1); 
+			out->updateWeight(adjustment2,2);
+			out->updateWeight(adjustment3,3); 
 
 			// Weight adjustment -- Two
 
-			adjustment=(H1->w1)*-(expected-result)*(H1->output)*(1-(H1->output));  
-			H1->updateWeight(adjustment,1); 
-			H1->updateWeight(adjustment,2);
-			H1->updateWeight(adjustment,3); 
+			adjustment1=(H1->w1)*-(error)*(H1->output)*(1-(H1->output)); 
+			adjustment2=(H1->w2)*-(error)*(H1->output)*(1-(H1->output)); 
+			adjustment3=(H1->w3)*-(error)*(H1->output)*(1-(H1->output)); 
+			H1->updateWeight(adjustment1,1); 
+			H1->updateWeight(adjustment2,2);
+			H1->updateWeight(adjustment3,3); 
 
-			adjustment=(H2->w1)*-(expected-result)*(H2->output)*(1-(H2->output));  
-			H2->updateWeight(adjustment,1); 
-			H2->updateWeight(adjustment,2);
-			H2->updateWeight(adjustment,3); 
+			adjustment1=(H2->w1)*-(error)*(H2->output)*(1-(H2->output)); 
+			adjustment2=(H2->w2)*-(error)*(H2->output)*(1-(H2->output)); 
+			adjustment3=(H2->w3)*-(error)*(H2->output)*(1-(H2->output)); 
+			H1->updateWeight(adjustment1,1); 
+			H1->updateWeight(adjustment2,2);
+			H1->updateWeight(adjustment3,3);
 
-			adjustment=(H2->w1)*-(expected-result)*(H3->output)*(1-(H3->output));  
-			H3->updateWeight(adjustment,1); 
-			H3->updateWeight(adjustment,2);
-			H3->updateWeight(adjustment,3); 
-
+			adjustment1=(H3->w1)*-(error)*(H3->output)*(1-(H3->output)); 
+			adjustment2=(H3->w2)*-(error)*(H3->output)*(1-(H3->output)); 
+			adjustment3=(H3->w3)*-(error)*(H3->output)*(1-(H3->output)); 
+			H1->updateWeight(adjustment1,1); 
+			H1->updateWeight(adjustment2,2);
+			H1->updateWeight(adjustment3,3);
+			totalError=totalError+error;
 		}
+		totalError=totalError/45; 
 
-		totalError=totalError+error;
 		std::cout<<totalError<<" "<<count<<std::endl;  
 		
 			}
@@ -117,16 +128,16 @@ class BackProp{
    void calculateFinal(double x, double y, double z)
    {
    	    double total1=H1->w1*x+H1->w2*y+H1->w3*z+H1->bias; 
-		double output1=1/(1+pow(2.7,total1));
+		double output1=1/(1+exp(total1));
 
    	    double total2=H2->w1*x+H2->w2*y+H2->w3*z+H1->bias; 
-		double output2=1/(1+pow(2.7,total2));
+		double output2=1/(1+exp(total2));
 
 		double total3=H2->w1*x+H2->w2*y+H2->w3*z+H1->bias; 
-		double output3=1/(1+pow(2.7,total3));
+		double output3=1/(1+exp(total3));
 
 		double total4=out->w1*output1+out->w2*output2+out->w3*output3+out->bias;
-		finalOutput=1/(1+pow(2.7,-total4));
+		finalOutput=1/(1+exp(total4));
 
 		std::cout<<finalOutput<<std::endl; 
    }
