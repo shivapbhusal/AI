@@ -30,7 +30,7 @@ public:
 	void getOutput(double x, double y, double z)
 	{
 		total=w1*x+w2*y+w3*z+bias; 
-		output=1/(1+exp(total));
+		output=1/(1+exp((-1)*total));
 
 		//std::cout<<output; 
 		//return output;   
@@ -58,7 +58,7 @@ class BackProp{
 		double error=0; 
 		int count=0; 
 		double totalError=0.9; 
-		while (totalError>0.001)
+		while (totalError>0.50)
 		{		
 			totalError=0; 
 			for (int i=0;i<45;i++)
@@ -77,7 +77,7 @@ class BackProp{
 			double result=out.output; 
 			double expected=trainingData[3][i]; 
 
-			error=0.5*pow((result-expected),2); 
+			error=sqrt(abs(result-expected)); 
 
 
 			// Back Propagation
@@ -98,13 +98,13 @@ class BackProp{
 			adjustment1*trainingData[1][i],
 			adjustment1*trainingData[2][i]);
 
-			H2.updateWeight(adjustment1*trainingData[0][i], 
-			adjustment1*trainingData[1][i],
-			adjustment1*trainingData[2][i]);
+			H2.updateWeight(adjustment2*trainingData[0][i], 
+			adjustment2*trainingData[1][i],
+			adjustment2*trainingData[2][i]);
 
-			H3.updateWeight(adjustment1*trainingData[0][i], 
-			adjustment1*trainingData[1][i],
-			adjustment1*trainingData[2][i]);
+			H3.updateWeight(adjustment3*trainingData[0][i], 
+			adjustment3*trainingData[1][i],
+			adjustment3*trainingData[2][i]);
 
 			totalError=totalError+error;
 		}
@@ -119,16 +119,16 @@ class BackProp{
    void calculateFinal(double x, double y, double z)
    {
    	    double total1=H1.w1*x+H1.w2*y+H1.w3*z+H1.bias; 
-		double output1=1/(1+exp(total1));
+		double output1=1/(1+exp((-1)*total1));
 
    	    double total2=H2.w1*x+H2.w2*y+H2.w3*z+H1.bias; 
-		double output2=1/(1+exp(total2));
+		double output2=1/(1+exp((-1)*total2));
 
 		double total3=H2.w1*x+H2.w2*y+H2.w3*z+H1.bias; 
-		double output3=1/(1+exp(total3));
+		double output3=1/(1+exp((-1)*total3));
 
 		double total4=out.w1*output1+out.w2*output2+out.w3*output3+out.bias;
-		finalOutput=1/(1+exp(total4));
+		finalOutput=1/(1+exp((-1)*total4));
 
 		std::cout<<finalOutput<<std::endl; 
    }
