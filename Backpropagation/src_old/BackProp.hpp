@@ -2,7 +2,6 @@
 Class created for Backpropagation  
 CS 6200
 Shiva Bhusal, Bowling Green State University
-
 */
 #ifndef BACKPROP_H 
 #define BACKPROP_H 
@@ -21,20 +20,11 @@ public:
 	double total=0; 
 	double output=0;
 
-	void updateWeight(double adjustment, double indicator)
+	void updateWeight(double adjustment1, double adjustment2, double adjustment3)
 	{
-		if (indicator==1){
-		w1=w1-0.05; 			
-		}
-		else if (indicator==2){
-			w2=w2-0.05; 
-		}
-		else if (indicator==3){
-			w3=w3-0.05; 
-		}
-		else {
-			std::cout<<"Invalid value of indicator"; 
-		}
+		w1=w1-adjustment1; 
+		w2=w2-adjustment2; 
+		w3=w3-adjustment3; 
 	}
 
 	void getOutput(double x, double y, double z)
@@ -68,7 +58,7 @@ class BackProp{
 		double error=0; 
 		int count=0; 
 		double totalError=0.9; 
-		while (totalError>0.5)
+		while (totalError>0.001)
 		{		
 			totalError=0; 
 			for (int i=0;i<45;i++)
@@ -95,9 +85,7 @@ class BackProp{
 			double adjustment1=(result-expected)*(out.output)*(1-(out.output))*H1.output;  
 			double adjustment2=(result-expected)*(out.output)*(1-(out.output))*H2.output; 
 			double adjustment3=(result-expected)*(out.output)*(1-(out.output))*H3.output;   
-			out.updateWeight(adjustment1,1); 
-			out.updateWeight(adjustment2,2);
-			out.updateWeight(adjustment3,3); 
+			out.updateWeight(adjustment1,adjustment2, adjustment3); 
 
 			/*
 			std::cout<<out.w1<<" "<<out.w2<<" "<<out.w3; 
@@ -106,35 +94,18 @@ class BackProp{
 
 			// Weight adjustment -- Two
 
-			adjustment1=(result-expected)*(H1.output)*(1-(H1.output)); 
-			adjustment2=(result-expected)*(H1.output)*(1-(H1.output)); 
-			adjustment3=(result-expected)*(H1.output)*(1-(H1.output)); 
-			H1.updateWeight(adjustment1,1); 
-			H1.updateWeight(adjustment2,2);
-			H1.updateWeight(adjustment3,3); 
+			H1.updateWeight(adjustment1*trainingData[0][i], 
+			adjustment1*trainingData[1][i],
+			adjustment1*trainingData[2][i]);
 
-			/*
-			std::cout<<H1.w1<<" "<<H1.w2<<" "<<H1.w3; 
-			std::cin.get(); 
-			*/
+			H2.updateWeight(adjustment1*trainingData[0][i], 
+			adjustment1*trainingData[1][i],
+			adjustment1*trainingData[2][i]);
 
-			adjustment1=(result-expected)*(H2.output)*(1-(H2.output)); 
-			adjustment2=(result-expected)*(H2.output)*(1-(H2.output)); 
-			adjustment3=(result-expected)*(H2.output)*(1-(H2.output)); 
-			H2.updateWeight(adjustment1,1); 
-			H2.updateWeight(adjustment2,2);
-			H2.updateWeight(adjustment3,3);
+			H3.updateWeight(adjustment1*trainingData[0][i], 
+			adjustment1*trainingData[1][i],
+			adjustment1*trainingData[2][i]);
 
-			/*std::cout<<H2.w1<<" "<<H2.w2<<" "<<H2.w3; 
-			std::cin.get(); 
-			*/
-
-			adjustment1=(H3.w1)*(-error)*(H3.output)*(1-(H3.output)); 
-			adjustment2=(H3.w2)*(-error)*(H3.output)*(1-(H3.output)); 
-			adjustment3=(H3.w3)*(-error)*(H3.output)*(1-(H3.output)); 
-			H3.updateWeight(adjustment1,1); 
-			H3.updateWeight(adjustment2,2);
-			H3.updateWeight(adjustment3,3);
 			totalError=totalError+error;
 		}
 		totalError=totalError/45; 
