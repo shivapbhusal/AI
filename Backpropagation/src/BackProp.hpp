@@ -17,7 +17,7 @@ public:
 	double w1=0.1; 
 	double w2=0.1; 
 	double w3=0.1; 
-	double bias=0.1; 
+	double bias=0.5; 
 	double total=0; 
 	double output=0;
 
@@ -108,9 +108,9 @@ class BackProp{
 			double resultB=out2->getOutput(outNetH1,outNetH2,outNetH3); 
 			double resultC=out3->getOutput(outNetH1,outNetH2,outNetH3);
 
-			double errorA=pow((resultA-expectedA),2)/2; 
-			double errorB=pow((resultB-expectedB),2)/2; 
-			double errorC=pow((resultC-expectedC),2)/2; 
+			double errorA=pow((resultA-expectedA),1/2)/2; 
+			double errorB=pow((resultB-expectedB),1/2)/2; 
+			double errorC=pow((resultC-expectedC),1/2)/2; 
 
 			// Weight adjustment --One 
 
