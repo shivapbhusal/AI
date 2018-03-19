@@ -16,7 +16,7 @@ public:
 	double w1; 
 	double w2; 
 	double w3; 
-	double bias=0.1; 
+	double bias=0.9; 
 	double total;  
 	double output;
 
@@ -38,7 +38,7 @@ public:
 	double getOutput(double x, double y, double z)
 	{
 		total=w1*x+w2*y+w3*z+bias; 
-		output=1/(1+exp(-total));
+		output=1/(1+exp((-1)*total));
 
 		//std::cout<<output; 
 		return output;   
@@ -71,7 +71,7 @@ class BackProp{
 
 		// Start of the Forward Pass 
 		int count=0; 
-		while (count<50000)
+		while (count<500000)
 		{
 		double expectedA=0, expectedB=0,expectedC=0; // Initialize  
 		for (int i=0;i<45;i++)
@@ -79,21 +79,21 @@ class BackProp{
 			if (i<15)
 			{
 				expectedA=1; 
-				expectedB=0; 
-				expectedC=0; 
+				expectedB=-1; 
+				expectedC=-1; 
 			}
 
 			else if ((i>=15) && (i<30))
 			{
-				expectedA=0; 
+				expectedA=-1; 
 				expectedB=1; 
-				expectedC=0; 
+				expectedC=-1; 
 
 			}
 			else
 			{
-				expectedA=0; 
-				expectedB=0; 
+				expectedA=-1; 
+				expectedB=-1; 
 				expectedC=1; 
 			}
 		
@@ -144,7 +144,7 @@ class BackProp{
    void calculateFinal(double x, double y, double z)
    {
    	    double total1=H1->w1*x+H1->w2*y+H1->w3*z+H1->bias; 
-		double output1=(1/(1+exp(-total1))); 
+		double output1=(1/(1+exp(total1))); 
 
    	    double total2=H2->w1*x+H2->w2*y+H2->w3*z+H1->bias; 
 		double output2=(1/(1+exp(-total2)));
@@ -161,8 +161,38 @@ class BackProp{
 		double total6=out3->w1*output1+out3->w2*output2+out3->w3*output3+out3->bias;
 		finalOutput3=(1/(1+exp(-total6)));
 
-		std::cout<<finalOutput1<<" "<<finalOutput2<<" "<<finalOutput3<<std::endl; 
+		//std::cout<<finalOutput1<<" "<<finalOutput2<<" "<<finalOutput3<<std::endl; 
+		classify(finalOutput1, finalOutput2, finalOutput3); 
    }
+
+   void classify(double finalOutput1, double finalOutput2, double finalOutput3)
+   {
+   	   if (finalOutput1>=finalOutput2)
+   	   {
+   	   	if (finalOutput1>=finalOutput3)
+   	   	{
+   	   		std::cout<<"Class A"<<std::endl; 
+   	   	}
+   	   	else {
+   	   		if (finalOutput2>=finalOutput3){
+   	   			std::cout<<"Class B"<<std::endl;  
+   	   		}
+   	   		else {
+   	   			std::cout<<"Class C"<<std::endl; 
+   	   		}
+   	   	}
+   	   }
+   	   else {
+   	   	if (finalOutput2>=finalOutput3)
+   	   	{
+   	   		std::cout<<"Class B"<<std::endl; 
+   	   	}
+   	   	else {
+   	   		std::cout<<"Class C"<<std::endl; 
+   	   	}
+
+   	   }
+   	}
 }; 
 
 #endif 
