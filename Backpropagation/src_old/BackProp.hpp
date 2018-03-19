@@ -71,7 +71,7 @@ class BackProp{
 
 		// Start of the Forward Pass 
 		int count=0; 
-		while (count<500000)
+		while (count<800000)
 		{
 		double expectedA=0, expectedB=0,expectedC=0; // Initialize  
 		for (int i=0;i<45;i++)
@@ -137,7 +137,7 @@ class BackProp{
 			//End of the backward pass
 		}
 		count=count+1; 
-		std::cout<<errorTotal<<" "<<count<<std::endl; 
+		std::cout<<"Total Error: "<<errorTotal<<" "<<"Total Iterations: "<<count<<std::endl; 
 	}
 }
 

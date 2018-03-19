@@ -56,16 +56,19 @@ network.trainModel(finalTrainingSet);  // Train the Network using the training d
 
 for (int i=15;i<30;i++)
 {
+  std::cout<<A.trainingSet[0][i]<<","<<A.trainingSet[1][i]<<","<<A.trainingSet[2][i]<<" "<<"Actual Class:A "<<"Predicted Class: ";  
   network.calculateFinal(A.trainingSet[0][i],A.trainingSet[1][i],A.trainingSet[2][i]); 
 }
 
 for (int i=15;i<30;i++)
 {
+  std::cout<<B.trainingSet[0][i]<<","<<B.trainingSet[1][i]<<","<<B.trainingSet[2][i]<<" "<<"Actual Class:B "<<"Predicted Class: ";  
   network.calculateFinal(B.trainingSet[0][i],B.trainingSet[1][i],B.trainingSet[2][i]); 
 }
 
 for (int i=15;i<30;i++)
 {
+  std::cout<<C.trainingSet[0][i]<<","<<C.trainingSet[1][i]<<","<<C.trainingSet[2][i]<<" "<<"Actual Class:C "<<"Predicted Class: ";  
   network.calculateFinal(C.trainingSet[0][i],C.trainingSet[1][i],C.trainingSet[2][i]); 
 }
 
