@@ -15,7 +15,9 @@ std::cout<<"Centers of spheres:"<<"(100,100,100),(-50,-50,-50),(50,50,50)"<<std:
 
 Generate A(100,100,100); 
 A.setDataValues(); // generates 30 datasets around the chosen center. 
-A.readDataValues();  
+A.readDataValues(); 
+
+std::cin.get(); 
 
 Generate B(-50,-50,-50); 
 B.setDataValues();
@@ -24,6 +26,18 @@ B.readDataValues();
 Generate C(50,50,50);
 C.setDataValues(); 
 C.readDataValues(); 
+
+// Scale the input set by 10
+
+for (int i=0;i<30;i++)
+{
+  for (int j=0;j<4;j++)
+  {
+    A.trainingSet[j][i]=10*A.trainingSet[j][i]; 
+    B.trainingSet[j][i]=10*B.trainingSet[j][i]; 
+    C.trainingSet[j][i]=10*C.trainingSet[j][i]; 
+  }
+}
 
 std::cout<<"Press any key to start training !"; 
 std::cin.get(); 

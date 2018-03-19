@@ -43,6 +43,9 @@ C.trainingSet[1][29]=61;
 C.trainingSet[2][29]=-50; 
 C.readDataValues(); 
 
+std::cout<<"Press any key to start training !"; 
+std::cin.get(); 
+
 // Initial setup for Organized form of training dataset 
 double finalTrainingSet[3][45]=
 {
