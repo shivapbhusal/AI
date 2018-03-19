@@ -12,13 +12,13 @@ class Node
 {
 
 public:
-	double const THETA=0.5; 
-	double w1=0.1; 
-	double w2=0.5; 
-	double w3=0.1; 
+	double const THETA=2; 
+	double w1; 
+	double w2; 
+	double w3; 
 	double bias=0.1; 
-	double total=0; 
-	double output=0;
+	double total;  
+	double output;
 
 	Node(double wght1, double wght2, double wght3)
 	{
@@ -68,10 +68,11 @@ class BackProp{
 
 	void trainModel(double trainingData[3][45])
 	{
+
+		// Start of the Forward Pass 
 		int count=0; 
-		while (count<500000)
+		while (count<50000)
 		{
-			count=count+1; 
 		double expectedA=0, expectedB=0,expectedC=0; // Initialize  
 		for (int i=0;i<45;i++)
 		{
@@ -84,21 +85,18 @@ class BackProp{
 
 			else if ((i>=15) && (i<30))
 			{
-				expectedA=-1; 
-				expectedB=-1; 
-				expectedC=-1; 
+				expectedA=0; 
+				expectedB=1; 
+				expectedC=0; 
 
 			}
-			else if ((i>=30) && (i<45)) 
+			else
 			{
-				expectedA=1; 
-				expectedB=1; 
+				expectedA=0; 
+				expectedB=0; 
 				expectedC=1; 
 			}
-			else {
-				std::cout<<"Extra training dataSets detected."; 
-			}
-
+		
 			double outNetH1=H1->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
 			double outNetH2=H2->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
 			double outNetH3=H3->getOutput(trainingData[0][i],trainingData[1][i],trainingData[2][i]); 
@@ -111,9 +109,11 @@ class BackProp{
 			double errorB=pow((resultB-expectedB),2)/2; 
 			double errorC=pow((resultC-expectedC),2)/2; 
 
-			// Weight adjustment --One 
+			errorTotal=(errorA+errorB+errorC)/3; 
 
-			errorTotal=errorA+errorB+errorC; 
+			// End of the Forward pass 
+
+			// Start of the backward pass 
 
 			double adj01=-(expectedA-resultA)*(out1->output)*(1-(out1->output))*H1->output; 
 			double adj02=-(expectedA-resultA)*(out1->output)*(1-(out1->output))*H2->output;  
@@ -134,7 +134,9 @@ class BackProp{
 			H2->updateWeight(adj02*trainingData[0][i],adj12*trainingData[1][i], adj22*trainingData[2][i]); 
 			H3->updateWeight(adj03*trainingData[0][i],adj13*trainingData[1][i], adj23*trainingData[2][i]); 
 
+			//End of the backward pass
 		}
+		count=count+1; 
 		std::cout<<errorTotal<<" "<<count<<std::endl; 
 	}
 }
@@ -142,22 +144,22 @@ class BackProp{
    void calculateFinal(double x, double y, double z)
    {
    	    double total1=H1->w1*x+H1->w2*y+H1->w3*z+H1->bias; 
-		double output1=tanh(total1); 
+		double output1=(1/(1+exp(-total1))); 
 
    	    double total2=H2->w1*x+H2->w2*y+H2->w3*z+H1->bias; 
-		double output2=tanh(total2);
+		double output2=(1/(1+exp(-total2)));
 
 		double total3=H2->w1*x+H2->w2*y+H2->w3*z+H1->bias; 
-		double output3=tanh(total3);
+		double output3=(1/(1+exp(-total3)));
 
 		double total4=out1->w1*output1+out1->w2*output2+out1->w3*output3+out1->bias;
-		finalOutput1=tanh(total4);
+		finalOutput1=(1/(1+exp(-total4)));
 
 		double total5=out2->w1*output1+out2->w2*output2+out2->w3*output3+out2->bias;
-		finalOutput2=tanh(total5);
+		finalOutput2=(1/(1+exp(-total5)));
 
 		double total6=out3->w1*output1+out3->w2*output2+out3->w3*output3+out3->bias;
-		finalOutput3=tanh(total6);
+		finalOutput3=(1/(1+exp(-total6)));
 
 		std::cout<<finalOutput1<<" "<<finalOutput2<<" "<<finalOutput3<<std::endl; 
    }

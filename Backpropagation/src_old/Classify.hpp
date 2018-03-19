@@ -12,7 +12,7 @@ class Classify {
 
 public: 
    // Assign points to the class with which it has highest result.
-std::string classifyPoints(double outputA, double outputB, double outputC) 
+std::string classifyPoints(double resultA, double resultB, double resultC) 
   {
    
   }
