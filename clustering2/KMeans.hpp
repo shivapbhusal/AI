@@ -33,12 +33,6 @@ struct Node
 }
 }; 
 
-struct ClustersStructure
-{
-  Coordinate center; 
-  LinkedList clusterPoints; 
-}; 
-
 class LinkedList {
   
   public:
@@ -52,7 +46,7 @@ class LinkedList {
 
     void insert(double x, double y)
     {
-      Node* n =new Node(x,y); 
+      Node *n =new Node(x,y); 
       if (start==NULL){
 	    start=n;
 	    end=n;  
@@ -78,6 +72,14 @@ void display()
 
 
   }; 
+
+  struct ClustersStructure
+{
+  Coordinate center; 
+  LinkedList clusterPoints; 
+}; 
+
+
 
 class KMeans {
 private:
@@ -117,17 +119,17 @@ public:
 
 	int getNearestCluster(Coordinate c, LinkedList centers)
 	{
-		double minDist=findDistance(c, centers.start)
+		double minDist=findDistance(c, Coordinate(centers.start->x_value, centers.start->y_value)); 
 		int clusterIndex=0; 
-		Node current=centers.start; 
+		Node *current=centers.start; 
 		while (current!=NULL)
 		{
-			tempDist=findDistance(c, (current.x, current.y))
+			double tempDist=findDistance(c, Coordinate(current->x_value, current->y_value)); 
 			if (tempDist<minDist)
 			{
-				clusterIndex=clusterIndex+1
+				clusterIndex=clusterIndex+1; 
 			}
-			current=current.next; 
+			current=current->next; 
 		}
 		return clusterIndex; 
 	} 
@@ -135,7 +137,7 @@ public:
 	LinkedList runAlgorithm(LinkedList dataSet)
 	{
 		LinkedList clusters[k]; 
-		Coordinates clusterCenters[k];
+		Coordinate clusterCenters[k];
 
 		current=dataSet.start;
 		i=0; 
@@ -167,10 +169,12 @@ public:
 	return clusters; 
 } 
 
-	Boolean checkClusters(Coordinates c1, Coordinates c2)
+	bool checkClusters(Coordinate c1, Coordinate c2)
 	{
 		return 0
 	}
 }; 
+
+
 
 #endif 
