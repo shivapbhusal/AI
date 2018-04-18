@@ -150,31 +150,22 @@ public:
 		while (!checkClusters(clusters, newClusters))
 		{
 			current=dataSet.start;
-		i=0; 
-		while(current!=NULL)
-		{
-			getNearestCluster(new Coordinates(current.x_value, current.y_value), clusterCenters)
-			
-
+		    i=0; 
+		    while(current!=NULL)
+		    {
+			int j=getNearestCluster(new Coordinates(current.x_value, current.y_value)); 
+			clusters[j].insert(current.x_value, current.y_value)
 		}
+	}
+	current=dataSet.start; 
+    for (int i=0; i<k; i++)
+	{
+		clusterCenters[i]=findCenter(clusters[i]); 
 
 	}
 
-
-
-			newCenters=[]
-        for c in centers:
-            newCenters.append(c)
-        count=count+1
-        for point in data:
-            j=getNearestCluster(point, centers)
-            clusters[j].append(point)
-
-        for i in range(len(clusters)):
-centers[i]=findCenter(clusters[i])
-
-		}
-	} 
+	return clusters; 
+} 
 
 	Boolean checkClusters(Coordinates c1, Coordinates c2)
 	{
