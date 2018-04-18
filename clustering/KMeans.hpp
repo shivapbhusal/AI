@@ -7,6 +7,7 @@ Shiva Bhusal, Bowling Green State University
 #ifndef KMEANS_H 
 #define KMEANS_H
 #include<iostream> 
+#include<math.h>
 
 struct Coordinate{
 	double x_value; 
@@ -30,6 +31,12 @@ struct Node
   y_value=y;  
   next=NULL; 
 }
+}; 
+
+struct ClustersStructure
+{
+  Coordinate center; 
+  LinkedList clusterPoints; 
 }; 
 
 class LinkedList {
@@ -69,6 +76,7 @@ void display()
 	  }
     }
 
+
   }; 
 
 class KMeans {
@@ -96,8 +104,73 @@ public:
 	    total_y=total_y/count; 
 
 	    return Coordinate(total_x, total_y); 
-	    }
+	}
 
+	double findDistance(Coordinate c1, Coordinate c2)
+	{
+		double x=c1.x_value; 
+		double y=c2.y_value; 
+
+		double distance=sqrt(pow((x-c1.x_value),2)+pow((y-c2.y_value),2));
+		return distance;  
+	}
+
+	double getNearestCluster(Coordinate c, LinkedList centers)
+	{
+		double minDist=findDistance(c, centers.start)
+		int clusterIndex=0; 
+		Node current=centers.start; 
+		while (current!=NULL)
+		{
+			tempDist=findDistance(c, (current.x, current.y))
+			if (tempDist<minDist)
+			{
+				clusterIndex=clusterIndex+1
+			}
+			current=current.next; 
+		}
+		return clusterIndex; 
+	} 
+
+	LinkedList runAlgorithm(LinkedList dataSet)
+	{
+		LinkedList clusterCenters();
+
+		Node *temp=start;
+		N=0;  
+    	while (N<K && temp !=NULL)
+	    {
+	    clusterCenters.insert(temp->x_value, temp->y_value)
+      	temp=temp->next;
+      	N=N+1;  
+	  	}
+
+		for i in range(k):
+        centers.append(data[i])
+        clusters.append([])
+
+    newCenters=[]
+    count=0
+    while newCenters!=centers:
+        newCenters=[]
+        for c in centers:
+            newCenters.append(c)
+        count=count+1
+        for point in data:
+            j=getNearestCluster(point, centers)
+            clusters[j].append(point)
+
+        for i in range(len(clusters)):
+            centers[i]=findCenter(clusters[i])
+
+        print(str(count)+" iterations.")
+        print(centers)
+        print(newCenters)
+        #time.sleep(0.5)
+
+return clusters
+
+	} 
 }; 
 
 #endif 

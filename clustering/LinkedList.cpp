@@ -13,7 +13,6 @@ Bowling Green State University
 
 struct Node
 {
-
   double x_value;
   double y_value;  
   Node *next; 
