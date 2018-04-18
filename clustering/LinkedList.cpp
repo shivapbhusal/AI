@@ -67,17 +67,3 @@ void display()
     }
 
   }; 
-
-
-int main()
-{
-  LinkedList *L=new LinkedList();
-  for (int i=0;i<=10;i++)
-  {
-    L->insert(i,i+1); 
-  }
-
-  L->display();
-  std::cout<<std::endl; 
-
-}
