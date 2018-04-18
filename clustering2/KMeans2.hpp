@@ -136,18 +136,18 @@ public:
 
 	LinkedList runAlgorithm(LinkedList dataSet)
 	{
-		LinkedList clusters; 
-		LinkedList clusterCenters[k];
+		LinkedList clusters[k]; 
+		Coordinate clusterCenters[k];
 
-		Node *current=dataSet.start;
-		int i=0; 
+		current=dataSet.start;
+		i=0; 
 		while(i<k)
 		{
-			current=current->next; 
-			clusterCenters.insert(current->x_value, current->y_value)
+			current=current.next; 
+			clusterCenters[i]=new Coordinates(current.x_value, current.y_value)
 		    i=i+1;  
 		}
-		LinkedList newClusters; 
+		LinkedList newClusters[k]; 
 		
 		while (!checkClusters(clusters, newClusters))
 		{
@@ -169,7 +169,7 @@ public:
 	return clusters; 
 } 
 
-	bool checkClusters(LinkedList L1, LinkedList L2 )
+	bool checkClusters(Coordinate c1, Coordinate c2)
 	{
 		return 0
 	}
