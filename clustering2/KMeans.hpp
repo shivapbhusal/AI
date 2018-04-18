@@ -136,8 +136,8 @@ public:
 
 	LinkedList runAlgorithm(LinkedList dataSet)
 	{
-		LinkedList clusters; 
-		LinkedList clusterCenters[k];
+		LinkedList clusterCenters; 
+		LinkedList Super;
 
 		Node *current=dataSet.start;
 		int i=0; 
@@ -156,7 +156,8 @@ public:
 		    while(current!=NULL)
 		    {
 			int j=getNearestCluster(new Coordinates(current.x_value, current.y_value)); 
-			clusters[j].insert(current.x_value, current.y_value)
+			LinkedList *temp =new LinkedList(); 
+
 		}
 	}
 	current=dataSet.start; 
@@ -171,7 +172,7 @@ public:
 
 	bool checkClusters(LinkedList L1, LinkedList L2 )
 	{
-		return 0
+		return 0; // check each nodes and return 1 if everything is same. 
 	}
 }; 
 
