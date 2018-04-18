@@ -3,7 +3,7 @@ Main file for cpp implementation of KMeans Clustering.
 */
 
 #include<iostream>
-//#include "KMeans.hpp"
+#include "KMeans.hpp"
 #include "generateData.hpp"
 int  main()
 {
@@ -21,22 +21,19 @@ Generate C(50,0);
 C.setDataValues(); 
 C.readDataValues(); 
 
-/*LinkedList L; 
-  /*for (int i=0;i<=10;i++)
+LinkedList L; 
+for (int i=0;i<=10;i++)
   {
-    L.insert(i,i+1); 
+    L.insert(A.trainingSet[1][i+1],A.trainingSet[2][i+1]); 
+    L.insert(B.trainingSet[1][i+1],B.trainingSet[2][i+1]); 
+    L.insert(C.trainingSet[1][i+1],C.trainingSet[2][i+1]); 
   }
 
-  /*L.display();
+  KMeans *kmeans=new KMeans(2); // customize the clustering algorithm with necessary value of K. 
 
-  /*
-
-  KMeans *kmeans=new KMeans(2);
-
-  Coordinate c=kmeans->findCenter(L); 
+  Coordinate c=kmeans->runAlgorithm(L); 
 
   std::cout<<c.x_value<<std::endl; 
   std::cout<<c.y_value<<std::endl; 
-  */
 
 }
