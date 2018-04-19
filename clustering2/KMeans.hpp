@@ -144,18 +144,18 @@ public:
 		while(i<k)
 		{
 			current=current->next; 
-			clusterCenters.insert(current->x_value, current->y_value)
+			clusterCenters.insert(current->x_value, current->y_value); 
 		    i=i+1;  
 		}
 		LinkedList newClusters; 
 		
-		while (!checkClusters(clusters, newClusters))
+		while (!checkClusters(clusterCenters, newClusters))
 		{
 			current=dataSet.start;
 		    i=0; 
 		    while(current!=NULL)
 		    {
-			int j=getNearestCluster(new Coordinates(current.x_value, current.y_value)); 
+			int j=getNearestCluster(new Coordinate(current->x_value, current->y_value)); 
 			LinkedList *temp =new LinkedList(); 
 
 		}
